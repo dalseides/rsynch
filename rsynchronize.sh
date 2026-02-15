@@ -8,13 +8,18 @@ DATE=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Backup started at $DATE" > "$LOGFILE"
 
 rsync -av \
+  --exclude 'dev' \
+  --exclude 'media' \
+  --exclude 'mnt' \
+  --exclude 'mount' \
+  --exclude 'proc' \
+  --exclude 'run' \
+  --exclude 'sys' \
+  --exclude 'tmp' \
+  --exclude 'var/tmp' \
   --exclude 'ntfs' \
   --exclude 'ext4' \
   --exclude 'win_ssd' \
-  --exclude 'mnt' \
-  --exclude 'media' \
-  --exclude 'proc' \
-  --exclude 'var/tmp' \
   --exclude 'home/dalseides/.local' \
   --delete "$SOURCE" "$DEST" >> "$LOGFILE" 2>&1
 
