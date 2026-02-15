@@ -8,24 +8,19 @@ DATE=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Backup started at $DATE" > "$LOGFILE"
 
 rsync -av \
-  --exclude 'dev' \
-  --exclude 'media' \
-  --exclude 'mnt' \
-  --exclude 'mount' \
-  --exclude 'proc' \
-  --exclude 'run' \
-  --exclude 'sys' \
-  --exclude 'tmp' \
-  --exclude 'var/tmp' \
+  --exclude={'dev','media','mnt','mount','proc','run','sys','tmp','var/tmp','home/*/.local'} \
   --exclude 'ntfs' \
   --exclude 'ext4' \
   --exclude 'win_ssd' \
-  --exclude 'home/dalseides/.local' \
   --delete "$SOURCE" "$DEST" >> "$LOGFILE" 2>&1
 
 echo "Backup completed at $DATE" >> "$LOGFILE"
 
 # NOTE: Rsync's "-a" means:
+# 
+# -v, --verbose               increase verbosity
+# -h, --human-readable        output numbers in a human-readable format
+#     --progress              show progress during transfer
 # 
 # -a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
 #  -r, --recursive             recurse into directories
@@ -41,5 +36,7 @@ echo "Backup completed at $DATE" >> "$LOGFILE"
 #  -H, --hard-links            preserve hard links
 #  -A, --acls                  preserve ACLs (implies -p)
 #  -X, --xattrs                preserve extended attributes
-# 
-# -v, --verbose               increase verbosity
+#
+# -m, --prune-empty-dirs      prune empty directory chains from file-list
+#
+#      --delete                delete extraneous files from dest dirs
