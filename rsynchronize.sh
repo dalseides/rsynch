@@ -25,3 +25,21 @@ rsync -av \
 
 echo "Backup completed at $DATE" >> "$LOGFILE"
 
+# NOTE: Rsync's "-a" means:
+# 
+# -a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
+#  -r, --recursive             recurse into directories
+#  -l, --links                 copy symlinks as symlinks
+#  -p, --perms                 preserve permissions
+#  -t, --times                 preserve modification times
+#  -g, --group                 preserve group
+#      --devices               preserve device files (super-user only)
+#      --specials              preserve special files
+#  -D                          same as --devices --specials
+#  -o, --owner                 preserve owner (super-user only)
+# 
+#  -H, --hard-links            preserve hard links
+#  -A, --acls                  preserve ACLs (implies -p)
+#  -X, --xattrs                preserve extended attributes
+# 
+# -v, --verbose               increase verbosity
