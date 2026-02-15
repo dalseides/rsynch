@@ -40,3 +40,5 @@ echo "Backup completed at $DATE" >> "$LOGFILE"
 # -m, --prune-empty-dirs      prune empty directory chains from file-list
 #
 #      --delete                delete extraneous files from dest dirs
+# -z, --compress              compress file data during the transfer
+#     --compress-choice=STR, --zc=STR      choose compression from lz4 (fastest), zstd, zlibx, zlib (slowest), none
